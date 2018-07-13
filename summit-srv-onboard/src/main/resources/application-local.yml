@@ -1,0 +1,19 @@
+server:
+  port: 9888
+spring:
+  application:
+    name: summit-srv-onboard
+      
+# Eureka specifics
+eureka:
+  instance:
+    hostname: localhost
+    metadata-map:
+      cluster: ems-demo-service
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9010/eureka/
+
+hdi_dynamic_deploy_url: https://srv-summit-dynamic-db-demo.cfapps.sap.hana.ondemand.com
+hdi_dynamic_deploy_user: test1234
+hdi_dynamic_deploy_password: test1234

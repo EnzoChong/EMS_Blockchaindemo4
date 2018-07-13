@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: ems-srv-demo
+  datasource:
+    url: ${vcap.services.hdi-container.credentials.url}
+    username: ${vcap.services.hdi-container.credentials.user}
+    password: ${vcap.services.hdi-container.credentials.password}
+    driver-class-name: com.sap.db.jdbc.Driver
+  jpa:
+    database-platform: org.eclipse.persistence.platform.database.HANAPlatform
+    properties:
+      eclipselink.persistence-context.flush-mode: COMMIT
+      eclipselink.weaving: static
+      eclipselink.ddl-generation: none
+      eclipselink.logging.timestamp: false
+      eclipselink.logging.session: false
+      eclipselink.logging.connection: false
+      eclipselink.logging.thread: false
+      eclipselink.logging.level.transaction: ALL
+      eclipselink.logging.level.sql: FINE
+      eclipselink.logging.level.event: ALL
+      eclipselink.logging.level.connection: ALL
+      eclipselink.logging.level.query: FINE
+      eclipselink.logging.level.cache: ALL
+      eclipselink.logging.level: ALL
+      eclipselink.logging.parameters: true
+      eclipselink.cache.shared.default: false
+  rabbitmq:
+    host: ${vcap.services.ems-srv-demo-mq.credentials.hostname}
+    port: ${vcap.services.ems-srv-demo-mq.credentials.port}
+    username: ${vcap.services.ems-srv-demo-mq.credentials.username}
+    password: ${vcap.services.ems-srv-demo-mq.credentials.password}
+# Eureka specifics
+
+eureka:
+  client:
+    fetchRegistry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://srv-eureka-demo-server.cfapps.sap.hana.ondemand.com/eureka/
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    metadataMap:
+      instanceId: ${vcap.application.instance_id}
+    metadata-map:
+      cluster: ems-activate-service
+    status-page-url: https://${vcap.application.uris[0]}${management.context-path:}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+sap.ems.dynamic.datasource.swi: true

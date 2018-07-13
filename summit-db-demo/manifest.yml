@@ -1,0 +1,10 @@
+---
+applications:
+- name: srv-summit-dynamic-db-demo
+  host: srv-summit-dynamic-db-demo
+  path: db
+  memory: 256M
+  health-check-type: none
+  env:
+      hdi_dynamic_deploy_user: test1234
+      hdi_dynamic_deploy_password: test1234

@@ -1,0 +1,46 @@
+namespace "com"."sap"."ems"."db"."demo"."common"."data";
+
+context CommonTypes {
+    type GUID               : String(32);
+    type Url                : String(100);
+    type CODE               : String(50);
+    type Name               : String(100);
+    type Value              : String(100);
+    type LowValue           : String(500);
+    type Description        : String(300);
+    type DataType           : String(30);
+    type DateTime           : UTCTimestamp;
+    type SourceSystem       : String(100);
+    type Boolean            : hana.TINYINT;
+    type ObjectCode         : String(100);
+    type LanguageCode       : String(15);
+    type Version            : Integer;
+    type Action             : String(40);
+    type ID                 : Integer;
+    type Operator           : String(30);
+    type Field              : String(25);
+    type UserName           : String(100);
+    type UserEmail          : String(50);
+    type UserAddress        : String(100);
+    type Object             : String(1000);
+    type CreateUpdateT {
+        CreatedBy : Integer;
+        CreatedOn : UTCTimestamp;
+        ChangedBy : Integer;
+        ChangedOn : UTCTimestamp;
+    };
+    
+    type HistoryT {
+        HistoryDbEvent  : String(20);
+        HistoryBizEvent : String(20);
+        HistoryAt       : UTCTimestamp;
+        HistoryActorId  : Integer;
+    };
+
+    type AdministrativeT {
+        CreatedBy      : String(100);
+        CreatedOn      : UTCTimestamp;
+        LastChangedBy : String(100);
+        LastChangedOn : UTCTimestamp;
+    };
+}

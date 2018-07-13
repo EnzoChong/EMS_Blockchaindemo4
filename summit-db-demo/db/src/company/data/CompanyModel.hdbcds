@@ -1,0 +1,9 @@
+namespace com.sap.ems.db.demo.company.data;
+
+using com.sap.ems.db.demo.common.data :: CommonTypes as commonType;
+entity CompanyModel {
+    key GUID        : commonType.GUID;
+        ID  		: commonType.LanguageCode;
+        Name		: commonType.Name;
+        Address 	: commonType.Value;
+};

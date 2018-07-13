@@ -1,0 +1,20 @@
+# Server settings (ServerProperties)
+server:
+  port: 9010
+
+# Spring specifics 
+spring:
+  application:
+    name: summit-srv-eureka
+    
+# Eureka specifics 
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetchRegistry: false
+    register-with-eureka: false
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:9010/eureka/

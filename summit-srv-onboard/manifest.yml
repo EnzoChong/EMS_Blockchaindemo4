@@ -1,0 +1,10 @@
+---
+applications:
+- name:  summit-srv-onboard
+  memory: 1G
+  host: summit-srv-onboard
+  path: target/summit-srv-onboard-0.0.1-SNAPSHOT.jar
+#  buildpack: sap_java_buildpack
+  services:
+  - summit-managed-hana
+ 

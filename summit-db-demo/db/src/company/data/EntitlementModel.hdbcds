@@ -1,0 +1,16 @@
+namespace com.sap.ems.db.demo.company.data;
+
+using com.sap.ems.db.demo.common.data :: CommonTypes as commonType;
+
+entity Entitlement {
+    key EntitlementGUID : commonType.GUID;
+        ID  		        : String(100);
+        EntitlementNo  	: String(100);
+        Quantity        : String(100);
+        ValidFrom       : String(100);
+        ValidTo         : String(100);
+        Status          : String(100);
+        CustomerID      : String(100);
+        OwnedByID       : String(100);
+        Description     : String(300);
+};

@@ -1,0 +1,41 @@
+server:
+  port: 9888
+spring:
+  application:
+    name: ems-srv-demo
+  datasource:
+    driverClassName: com.sap.db.jdbc.Driver
+    url: jdbc:sap://10.253.87.66:30041/?currentschema=C5BED8D9B8D54B3D81C277AF8DDE60E8
+    username: SBSS_88317873477425440172627359179377629283899625208462708059814262208
+    password: Zp3M0-ZxLxf_EdMMJ7m_Iy83g7ZXWSw3ZwnMmbeU_6npJ2KFq.XsLioCQ1NHewebzWBadc0D6lPoOJhMOf0D1vN.uG.Xy7htd2mpVaTCpt-KODLB8QZZzWPHDo8Mv7J5
+  jpa:
+    properties:
+      eclipselink.persistence-context.flush-mode: COMMIT
+      eclipselink.weaving: static
+      eclipselink.ddl-generation: none
+      eclipselink.logging.timestamp: false
+      eclipselink.logging.session: false
+      eclipselink.logging.connection: false
+      eclipselink.logging.thread: falsecd
+      eclipselink.logging.level.transaction: ALL
+      eclipselink.logging.level.sql: FINE
+      eclipselink.logging.level.event: ALL
+      eclipselink.logging.level.connection: ALL
+      eclipselink.logging.level.query: FINE
+      eclipselink.logging.level.cache: ALL
+      eclipselink.logging.level: ALL
+      eclipselink.logging.parameters: true
+      eclipselink.cache.shared.default: false
+      
+sap.ems.dynamic.datasource.swi: true
+
+# Eureka specifics
+ 
+eureka:
+  instance:
+    hostname: localhost
+    metadata-map:
+      cluster: ems-demo-service
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9010/eureka/

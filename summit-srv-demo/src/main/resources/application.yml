@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: summit-srv-demo
+  datasource:
+    url: ${vcap.services.hdi-container.credentials.url}
+    username: ${vcap.services.hdi-container.credentials.user}
+    password: ${vcap.services.hdi-container.credentials.password}
+    driver-class-name: com.sap.db.jdbc.Driver
+  redis:
+    database: 5
+    host: ${vcap.services.summit-redis.credentials.hostname}
+    password: ${vcap.services.summit-redis.credentials.password}
+    port: ${vcap.services.summit-redis.credentials.port}
+    timeout: 3000
+  jpa:
+    database-platform: org.eclipse.persistence.platform.database.HANAPlatform
+    properties:
+      eclipselink.persistence-context.flush-mode: COMMIT
+      eclipselink.weaving: static
+      eclipselink.ddl-generation: none
+      eclipselink.logging.timestamp: false
+      eclipselink.logging.session: false
+      eclipselink.logging.connection: false
+      eclipselink.logging.thread: false
+      eclipselink.logging.level.transaction: ALL
+      eclipselink.logging.level.sql: FINE
+      eclipselink.logging.level.event: ALL
+      eclipselink.logging.level.connection: ALL
+      eclipselink.logging.level.query: FINE
+      eclipselink.logging.level.cache: ALL
+      eclipselink.logging.level: ALL
+      eclipselink.logging.parameters: true
+      eclipselink.cache.shared.default: false
+  rabbitmq:
+    host: ${vcap.services.summit-rabbit-mq.credentials.hostname}
+    port: ${vcap.services.summit-rabbit-mq.credentials.port}
+    username: ${vcap.services.summit-rabbit-mq.credentials.username}
+    password: ${vcap.services.summit-rabbit-mq.credentials.password}
+# Eureka specifics
+eureka:
+  client:
+    fetchRegistry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://summit-srv-eureka.cfapps.sap.hana.ondemand.com/eureka/
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    metadataMap:
+      instanceId: ${vcap.application.instance_id}
+    metadata-map:
+      cluster: ems-activate-service
+    status-page-url: https://${vcap.application.uris[0]}${management.context-path:}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+blockchain.api.host: https://hyperledger-fabric.cfapps.sap.hana.ondemand.com/api/v1/chaincodes/f3758a10-4e9d-4d9d-9f34-5c7ddccb742f-com-sap-ems-emsDemo/latest
+blockchain.api.service.key: {"type":"hyperledger-fabric","channelId":"devf3758a10-4e9d-4d9d-9f34-5c7ddccb742fems-a-channel","serviceUrl":"https://hyperledger-fabric.cfapps.sap.hana.ondemand.com/api/v1","documentationUrl":"https://api.sap.com/shell/discover/contentpackage/SCPBlockchainTechnologies/api/hyperledger_fabric","oAuth":{"clientId":"sb-4f963475-12a1-4125-883c-2f2f91c41e2d!b50|na-54bc25f3-f937-40b7-8b33-ffe240899cf0!b342","clientSecret":"05r8PEaVWCJozWOjRk1AxopU0wc=","url":"https://sap-csc-cd.authentication.sap.hana.ondemand.com","identityZone":"sap-csc-cd"}}

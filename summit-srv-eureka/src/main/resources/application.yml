@@ -1,0 +1,17 @@
+# Spring specifics 
+spring:
+  application:
+    name: summit-srv-eureka
+    
+# Eureka specifics 
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    metadataMap:
+      instanceId: ${vcap.application.instance_id}
+    status-page-url: https://${vcap.application.uris[0]}${management.context-path:}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true

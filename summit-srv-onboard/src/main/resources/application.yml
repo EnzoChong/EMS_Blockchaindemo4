@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: summit-srv-onboard
+# Eureka specifics
+eureka:
+  client:
+    fetchRegistry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://summit-srv-eureka.cfapps.sap.hana.ondemand.com/eureka/
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    metadataMap:
+      instanceId: ${vcap.application.instance_id}
+    metadata-map:
+      cluster: ems-activate-service
+    status-page-url: https://${vcap.application.uris[0]}${management.context-path:}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+            
+hdi_dynamic_deploy_url: https://srv-summit-dynamic-db-demo.cfapps.sap.hana.ondemand.com
+hdi_dynamic_deploy_user: test1234
+hdi_dynamic_deploy_password: test1234

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" strict="true"
+    packages="com.sap.hcp.cf.log4j2.converter,com.sap.hcp.cf.log4j2.layout">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT" follow="true">
+            <JsonPatternLayout charset="utf-8" />
+        </Console>
+        <Console name="STDOUT" target="SYSTEM_OUT" follow="true">
+            <PatternLayout
+                pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} [%mdc] - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="${LOG_ROOT_LEVEL:-WARN}">
+            <!-- Use 'STDOUT' instead for human-readable output -->
+            <AppenderRef ref="STDOUT" />
+        </Root>
+        <!-- request metrics are reported using INFO level, so make sure 
+            the instrumentation loggers are set to that level -->
+        <Logger name="com.sap.hcp.cf" level="INFO" />
+    </Loggers>
+</Configuration>
